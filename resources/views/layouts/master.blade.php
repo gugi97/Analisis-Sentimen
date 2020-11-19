@@ -88,13 +88,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{url('dataset')}}" class="nav-link">
+                                    <a href="{{url('trainingkotor')}}" class="nav-link">
                                         <i class="fas fa-database nav-icon"></i>
                                         <p>Data Training</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
+                                    <a href="{{url('testingkotor')}}" class="nav-link">
                                         <i class="fas fa-tasks nav-icon"></i>
                                         <p>Data Testing</p>
                                     </a>
