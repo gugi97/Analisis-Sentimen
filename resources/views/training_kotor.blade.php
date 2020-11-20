@@ -24,23 +24,59 @@
     <div class="container-fluid">
         {{-- ALERT MESSAGE --}}
         @if(count($errors) > 0)
-            <div class="alert alert-danger" style="padding: 10px 0 0 0;">
-                <ul>
-                    @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="alert alert-danger" style="padding: 10px 0 0 0;">
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
 
         {{-- notifikasi sukses --}}
         @if ( session('success'))
-            <div class="alert alert-success" >
-                <button type="button" class="close" data-dismiss="alert">×</button> 
-                <strong>{{ session('success') }}</strong>
-            </div>
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ session('success') }}</strong>
+        </div>
         @endif
         {{-- END ALERT MESSAGE --}}
+
+        <!-- INFO BOX -->
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon" style="background-color: #ffffff;">
+                        <img src="AdminLTE/dist/img/indihome.png" alt="Logo Indihome" class="brand-image">
+                    </span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text" style="color: #DC3545; font-weight: 700; font-size: 13px;">
+                            Data Indihome
+                        </span>
+                        <span class="info-box-number" style="font-size: 20px; font-family: cursive;">{{$indihome}}
+                            Tweet</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon" style="background-color: #ffffff;">
+                        <img src="AdminLTE/dist/img/firstmedia.png" alt="Logo Firstmedia" class="brand-image">
+                    </span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text" style="color: #3B60AD; font-weight: 700; font-size: 13px;">
+                            Data Firstmedia
+                        </span>
+                        <span class="info-box-number" style="font-size: 20px; font-family: cursive;">{{$firstmedia}}
+                            Tweet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END INFO BOX -->
 
         <div class="card">
             <!-- <div class="card-header">
@@ -58,7 +94,8 @@
                 <!-- End Trigger Button -->
 
                 <!-- Import Excel Modal -->
-                <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -68,7 +105,9 @@
                                 </button>
                             </div>
 
-                            <form method="post" role="Insertform" action="{{ action('DatasetTrainingKotorController@store') }}" enctype="multipart/form-data">
+                            <form method="post" role="Insertform"
+                                action="{{ action('DatasetTrainingKotorController@store') }}"
+                                enctype="multipart/form-data">
                                 <div class="modal-body">
                                     {{ csrf_field() }}
                                     <label>File Input</label>
@@ -76,7 +115,7 @@
                                         <input type="file" name="file" required="required">
                                         <p>*Only (.xls, .xlsx) file allowed to upload here</p>
                                     </div>
-                                    
+
                                 </div>
 
                                 <div class="modal-footer">
@@ -157,6 +196,7 @@
             });
         }).draw();
     });
+
 </script>
 
 @endsection

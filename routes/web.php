@@ -6,3 +6,5 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('testingkotor', 'DatasetTestingKotorController');
 Route::resource('trainingkotor', 'DatasetTrainingKotorController');
+
+Route::resource('slangword', 'SlangWordController');

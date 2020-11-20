@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dataset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 
 use App\Imports\DatasetImport;
@@ -15,8 +16,15 @@ class DatasetTrainingKotorController extends Controller
     {
         $dataset = Dataset::where('datatype', '1')->get();
 
+        $array_indihome = array('category' => 'indihome', 'datatype' => '1');
+        $arrayf_firstmedia = array('category' => 'firstmedia', 'datatype' => '1');
+        $data_indihome = DB::table('dataset_kotor')->where($array_indihome)->count();
+        $data_firstmedia = DB::table('dataset_kotor')->where($arrayf_firstmedia)->count();
+
         return view('training_kotor', [
             'data' => $dataset,
+            'indihome' => $data_indihome,
+            'firstmedia' => $data_firstmedia,
         ]);
     }
 

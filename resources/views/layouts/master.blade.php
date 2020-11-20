@@ -48,7 +48,7 @@
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
                 <img src="AdminLTE/dist/img/twitter-icon.png" alt="Twitter Logo" class="brand-image">
-                <span class="brand-text font-weight-light"><b>Analisis Sentimen</b></span>
+                <span class="brand-text font-weight-bolder" style="color:#1DA1F2;">Analisis Sentimen</span>
             </a>
 
             <!-- Sidebar -->
@@ -125,7 +125,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
+                                    <a href="{{url('slangword')}}" class="nav-link">
                                         <i class="fas fa-list-alt nav-icon"></i>
                                         <p>Slangword List</p>
                                     </a>
