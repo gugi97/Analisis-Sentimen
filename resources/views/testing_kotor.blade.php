@@ -21,92 +21,111 @@
 
 <!-- Main content -->
 <section class="content">
+    <div class="container-fluid">
+        {{-- ALERT MESSAGE --}}
+        @if(count($errors) > 0)
+            <div class="alert alert-danger" style="padding: 10px 0 0 0;">
+                <ul>
+                    @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    <!-- Default box -->
-    <div class="card">
-        <!-- <div class="card-header">
-            <center>
-                <h4>Jumlah Dataset</h4>
-            </center>
-        </div> -->
-        <!-- /.card-header -->
+        {{-- notifikasi sukses --}}
+        @if ( session('success'))
+            <div class="alert alert-success" >
+                <button type="button" class="close" data-dismiss="alert">×</button> 
+                <strong>{{ session('success') }}</strong>
+            </div>
+        @endif
+        {{-- END ALERT MESSAGE --}}
 
-        <div class="card-body">
-            <!-- Button trigger Import Excel modal -->
-            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#importExcel">
-                <i class="fas fa-plus-circle"></i> Import Excel
-            </button>
-            <!-- End Trigger Button -->
+        <div class="card">
+            <!-- <div class="card-header">
+                <center>
+                    <h4>Jumlah Dataset</h4>
+                </center>
+            </div> -->
+            <!-- /.card-header -->
 
-            <!-- Import Excel Modal -->
-            <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+            <div class="card-body">
+                <!-- Button trigger Import Excel modal -->
+                <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#importExcel">
+                    <i class="fas fa-plus-circle"></i> Import Excel
+                </button>
+                <!-- End Trigger Button -->
 
-                        <form method="post" role="Insertform" action="dataset_import" enctype="multipart/form-data">
-                            <div class="modal-body">
-                                {{ csrf_field() }}
-                                <label>File Input</label>
-                                <div class="form-group">
-                                    <input type="file" name="file" required="required">
-                                    <p>*Only Excell file allowed to upload here</p>
-                                </div>
-                                
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary">
-                                    Import
+                <!-- Import Excel Modal -->
+                <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        </form>
+
+                            <form method="post" role="Insertform" action="{{ action('DatasetTestingKotorController@store') }}" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    {{ csrf_field() }}
+                                    <label>File Input</label>
+                                    <div class="form-group">
+                                        <input type="file" name="file" required="required">
+                                        <p>*Only (.xls, .xlsx) file allowed to upload here</p>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Import
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
+                <!-- End Modal -->
+
+                <!-- Tabel Tweet -->
+                <table id="datatable" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th scope="col">No</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Tweet</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $dataset)
+                        <tr>
+                            <th style="text-align:center;">{{ $loop->iteration }}</th>
+                            <td>{{ $dataset->user }}</td>
+                            <td>{{ $dataset->tweet }}</td>
+                            <td>{{ $dataset->date}}</td>
+                            <td>{{ $dataset->category }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <!-- End Tabel Tweet -->
+
             </div>
-            <!-- End Modal -->
+            <!-- /.card-body -->
 
-            <!-- Tabel Tweet -->
-            <table id="datatable" class="table table-bordered table-hover table-striped">
-                <thead>
-                    <tr style="text-align: center;">
-                        <th scope="col">No</th>
-                        <th scope="col">User</th>
-                        <th scope="col">Tweet</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Category</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $dataset)
-                    <tr>
-                        <th style="text-align:center;">{{ $loop->iteration }}</th>
-                        <td>{{ $dataset->user }}</td>
-                        <td>{{ $dataset->tweet }}</td>
-                        <td>{{ $dataset->date}}</td>
-                        <td>{{ $dataset->category }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <!-- End Tabel Tweet -->
+            <!-- <div class="card-footer">
 
+            </div> -->
+            <!-- /.card-footer-->
         </div>
-        <!-- /.card-body -->
-
-        <!-- <div class="card-footer">
-
-        </div> -->
-        <!-- /.card-footer-->
+        <!-- /.card -->
     </div>
-    <!-- /.card -->
-
 </section>
 
 <script src="/AdminLTE/plugins/jquery/jquery.slim.min.js"></script>

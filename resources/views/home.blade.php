@@ -24,7 +24,7 @@
 
     <!-- Default box -->
     <div class="card">
-        <div class="card-header">
+        <div class="card-header" style="background-color: unset;">
             <center>
                 <h4>Jumlah Dataset</h4>
             </center>
@@ -37,28 +37,28 @@
                     <!-- small card -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>Nan</h3>
+                            <h3>{{$training}}</h3>
                             <p>Data Training</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-envelope-open-text"></i>
+                            <i class="fas fa-database"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
+                        <a href="trainingkotor" class="small-box-footer">
                             More info <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
                     <!-- small card -->
-                    <div class="small-box bg-danger">
+                    <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>Nan</h3>
+                            <h3>{{$testing}}</h3>
                             <p>Data Test</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-envelope-open-text"></i>
+                            <i class="fas fa-database"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
+                        <a href="testingkotor" class="small-box-footer">
                             More info <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>

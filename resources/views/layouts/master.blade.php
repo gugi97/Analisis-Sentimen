@@ -18,9 +18,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     <!-- DataTables CDN -->
     <link rel="stylesheet" href="AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="/adminlte/plugins/bootstrap/css/bootstrap.min.css">
 </head>
 
-<body class="hold-transition layout-fixed sidebar-mini">
+<body class="hold-transition layout-fixed sidebar-mini" style="background-color:#f4f6f9;">
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
