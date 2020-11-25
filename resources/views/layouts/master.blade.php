@@ -90,13 +90,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{url('trainingkotor')}}" class="nav-link">
+                                    <a href="{{url('trainingkotor')}}" class="nav-link {{ set_active('trainingkotor.index') }}">
                                         <i class="fas fa-database nav-icon"></i>
                                         <p>Data Training</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{url('testingkotor')}}" class="nav-link">
+                                    <a href="{{url('testingkotor')}}" class="nav-link {{ set_active('testingkotor.index') }}">
                                         <i class="fas fa-tasks nav-icon"></i>
                                         <p>Data Testing</p>
                                     </a>
@@ -113,7 +113,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{url('dataset')}}" class="nav-link">
+                                    <a href="{{url('preprocessing')}}" class="nav-link">
                                         <i class="fas fa-cogs nav-icon"></i>
                                         <p>Preprocessing</p>
                                     </a>
@@ -131,7 +131,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
+                                    <a href="{{url('stopword')}}" class="nav-link">
                                         <i class="far fa-list-alt nav-icon"></i>
                                         <p>Stopword List</p>
                                     </a>

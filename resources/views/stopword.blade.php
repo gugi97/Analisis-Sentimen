@@ -8,12 +8,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Slangword List</h1>
+                <h1>Stopword List</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Slangword List</li>
+                    <li class="breadcrumb-item active">Stopword List</li>
                 </ol>
             </div>
         </div>
@@ -61,17 +61,15 @@
                     <thead>
                         <tr style="text-align: center;">
                             <th scope="col">No</th>
-                            <th scope="col">Slangword</th>
-                            <th scope="col">Mean</th>
+                            <th scope="col">Word</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($slang as $slangword)
+                        @foreach ($stop as $stopword)
                         <tr style="text-align: center;">
                             <th></th>
-                            <td>{{ $slangword->slang }}</td>
-                            <td>{{ $slangword->mean }}</td>
+                            <td>{{ $stopword->word }}</td>
                             <td>
                                 <a href="#" data-toggle="modal" class="btn btn-success edit">
                                     <i class="fas fa-edit"></i>
@@ -90,25 +88,19 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Slang Word List</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Add Stopword List</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form role="Insertform" action="{{ action('SlangWordController@store') }}" method="post" enctype="multipart/form-data">
+                            <form role="Insertform" action="{{ action('StopWordController@store') }}" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     {{ csrf_field() }}
 
                                     <div class="form-group">
-                                        <label>Slangword</label>
-                                        <input type="text" class="form-control" placeholder="Slangword"
-                                            name="slang" value="{{ old('slang') }}">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Mean</label>
-                                        <input type="text" class="form-control" placeholder="Mean"
-                                            name="mean" value="{{ old('mean') }}">
+                                        <label>Stopword</label>
+                                        <input type="text" class="form-control" placeholder="Stopword"
+                                            name="stop" value="{{ old('stop') }}">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -130,27 +122,21 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit Slangword Data</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Stopword Data</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form role="Insertform" action="/slangword" method="post" id="editForm"
+                            <form role="Insertform" action="/stopword" method="post" id="editForm"
                                 enctype="multipart/form-data">
                                 <div class="modal-body">
                                     {{ csrf_field() }}
                                     {{ method_field('PUT') }}
 
                                     <div class="form-group">
-                                        <label>Slangword</label>
-                                        <input type="text" class="form-control" placeholder="Slangword"
-                                            name="slang" id="slang" value="{{ old('slang') }}">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Mean</label>
-                                        <input type="text" class="form-control" placeholder="Mean"
-                                            name="mean" id="mean" value="{{ old('mean') }}">
+                                        <label>Stopword</label>
+                                        <input type="text" class="form-control" placeholder="Stopword"
+                                            name="stop" id="stop" value="{{ old('stop') }}">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -172,12 +158,12 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Delete Slangword Data</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Delete Stopword Data</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form role="Insertform" action="/slangword" method="post" id="deleteForm" enctype="multipart/form-data">
+                            <form role="Insertform" action="/stopword" method="post" id="deleteForm" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
@@ -219,7 +205,7 @@
             "columnDefs": [{
                 "searchable": false,
                 "orderable": false,
-                "targets": [0, 3]
+                "targets": 0,
             }],
             "order": [
                 [1, 'asc']
@@ -249,10 +235,9 @@
             var data = table.row($tr).data();
             console.log(data);
 
-            $('#slang').val(data[1]);
-            $('#mean').val(data[2]);
+            $('#stop').val(data[1]);
 
-            $('#editForm').attr('action', '/slangword/' + data[1]);
+            $('#editForm').attr('action', '/stopword/' + data[1]);
             $('#editModal').modal('show');
         });
         //End Edit Record
@@ -268,7 +253,7 @@
             var data = table.row($tr).data();
             console.log(data);
 
-            $('#deleteForm').attr('action', '/slangword/' + data[1]);
+            $('#deleteForm').attr('action', '/stopword/' + data[1]);
             $('#deleteModal').modal('show');
         });
         //End Delete Record
