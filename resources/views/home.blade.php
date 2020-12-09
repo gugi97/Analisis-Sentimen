@@ -32,6 +32,43 @@
         <!-- /.card-header -->
 
         <div class="card-body">
+            <!-- INFO BOX -->
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon" style="background-color: #ffffff;">
+                            <img src="AdminLTE/dist/img/indihome.png" alt="Logo Indihome" class="brand-image">
+                        </span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text" style="color: #DC3545; font-weight: 700; font-size: 13px;">
+                                Data Indihome
+                            </span>
+                            <span class="info-box-number" style="font-size: 20px; font-family: cursive;">{{$indihome}}
+                                Tweet</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon" style="background-color: #ffffff;">
+                            <img src="AdminLTE/dist/img/firstmedia.png" alt="Logo Firstmedia" class="brand-image">
+                        </span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text" style="color: #3B60AD; font-weight: 700; font-size: 13px;">
+                                Data Firstmedia
+                            </span>
+                            <span class="info-box-number" style="font-size: 20px; font-family: cursive;">{{$firstmedia}}
+                                Tweet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END INFO BOX -->
+
+            <!-- CARD BOX -->
             <div class="row">
                 <div class="col-lg-3 col-6">
                     <!-- small card -->
@@ -63,7 +100,10 @@
                         </a>
                     </div>
                 </div>
+
             </div>
+            <!-- END CARD BOX -->
+
         </div>
         <!-- /.card-body -->
 

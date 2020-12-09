@@ -38,10 +38,10 @@
                     <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Cleansing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Sopword Removal</a>
+                    <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Normalization</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Convert Emoticon</a>
+                    <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Stemming</a>
                 </li>
             </ul>
         </div>
@@ -104,6 +104,32 @@
                 <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages">
                     <!-- Tabel Tweet -->
                     <table id="datatable3" class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr style="text-align: center;">
+                                <th scope="col">No</th>
+                                <th scope="col">Tweet Before</th>
+                                <th scope="col">Tweet After</th>
+                                <th scope="col">Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($normalization as $nm)
+                            <tr>
+                                <th style="text-align:center;">{{ $loop->iteration }}</th>
+                                <td>{{ $nm['tweet_before'] }}</td>
+
+                                <td>{{ $nm['tweet_after'] }}</td>
+
+                                <td>{{ $nm['category'] }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <!-- End Tabel Tweet -->
+                </div>
+                <div class="tab-pane fade" id="custom-tabs-one-settings" role="tabpanel" aria-labelledby="custom-tabs-one-settings-tab">
+                    <!-- Tabel Tweet -->
+                    <table id="datatable4" class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
@@ -182,6 +208,17 @@
             ]
         });
 
+        var table4 = $('#datatable4').DataTable({
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "order": [
+                [1, 'asc']
+            ]
+        });
+
         table1.on('order.dt search.dt', function() {
             table1.column(0, {
                 search: 'applied',
@@ -209,6 +246,16 @@
             }).nodes().each(function(cell, i) {
                 cell.innerHTML = i + 1;
                 table3.cell(cell).invalidate('dom');
+            });
+        }).draw();
+
+        table4.on('order.dt search.dt', function() {
+            table4.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function(cell, i) {
+                cell.innerHTML = i + 1;
+                table4.cell(cell).invalidate('dom');
             });
         }).draw();
     });

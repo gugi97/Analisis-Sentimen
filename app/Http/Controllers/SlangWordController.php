@@ -22,7 +22,7 @@ class SlangWordController extends Controller
     {
         $this->validate($request,[
             'slang' => ['required', 'filled','unique:slangword,slang'],
-            'mean' => ['required', 'filled', 'alpha', 'unique:slangword,mean'],
+            'mean' => ['required', 'filled'],
         ]);
 
         $slang = new Slangword;
@@ -49,7 +49,7 @@ class SlangWordController extends Controller
     {
         $this->validate($request,[
             'slang' => ['required', 'filled'],
-            'mean' => ['required', 'filled', 'alpha'],
+            'mean' => ['required', 'filled'],
         ]);
 
         $slang = Slangword::where('slang',$id)->first();
