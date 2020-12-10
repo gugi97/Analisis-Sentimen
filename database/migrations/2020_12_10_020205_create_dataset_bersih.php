@@ -20,6 +20,7 @@ class CreateDatasetBersih extends Migration
             $table->timestamp('date');
             $table->string('category', 128);
             $table->string('datatype', 2);
+            $table->string('label', 20)->nullable;
         });
     }
 

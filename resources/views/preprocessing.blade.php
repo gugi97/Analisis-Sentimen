@@ -16,16 +16,27 @@
                 </ol>
             </div>
         </div>
-        <!-- Button Preprocessing -->
-        <button type="button" class="btn btn-primary d-block mr-0 ml-auto">
-            <i class="fas fa-play-circle"></i> Start Preprocessing
-        </button>
-        <!-- End Button Preprocessing -->
+        <form role="Insertform" action="{{ action('PreprocessingController@store') }}" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
+            <!-- Button Preprocessing -->
+            <button type="submit" class="btn btn-primary d-block mr- ml-auto">
+                <i class="fas fa-play-circle"></i> Start Preprocessing
+            </button>
+            <!-- End Button Preprocessing -->
+        </form>
     </div><!-- /.container-fluid -->
 </section>
 
 <!-- Main content -->
 <section class="content">
+    <!-- notifikasi sukses -->
+        @if ( session('success'))
+            <div class="alert alert-success" >
+                <button type="button" class="close" data-dismiss="alert">×</button> 
+                <strong>{{ session('success') }}</strong>
+            </div>
+        @endif
+    <!-- end notifikasi -->
 
     <!-- Default box -->
     <div class="card card-primary card-tabs">
@@ -41,7 +52,7 @@
                     <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Normalization</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Stemming</a>
+                    <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Stopword Removal & Stemming</a>
                 </li>
             </ul>
         </div>
@@ -61,14 +72,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($casefolding as $cf)
+                            @foreach ($filtering as $casefolding)
                             <tr>
                                 <th style="text-align:center;">{{ $loop->iteration }}</th>
-                                <td>{{ $cf['tweet_before'] }}</td>
+                                <td>{{ $casefolding['tweet_before'] }}</td>
 
-                                <td>{{ $cf['tweet_after'] }}</td>
+                                <td>{{ $casefolding['tweet_lower'] }}</td>
 
-                                <td>{{ $cf['category'] }}</td>
+                                <td>{{ $casefolding['category'] }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -87,14 +98,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($cleansing as $cl)
+                            @foreach ($filtering as $cleansing)
                             <tr>
                                 <th style="text-align:center;">{{ $loop->iteration }}</th>
-                                <td>{{ $cl['tweet_before'] }}</td>
+                                <td>{{ $cleansing['tweet_before'] }}</td>
 
-                                <td>{{ $cl['tweet_after'] }}</td>
+                                <td>{{ $cleansing['tweet_cleansing'] }}</td>
 
-                                <td>{{ $cl['category'] }}</td>
+                                <td>{{ $cleansing['category'] }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -113,14 +124,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($normalization as $nm)
+                            @foreach ($filtering as $normalization)
                             <tr>
                                 <th style="text-align:center;">{{ $loop->iteration }}</th>
-                                <td>{{ $nm['tweet_before'] }}</td>
+                                <td>{{ $normalization['tweet_before'] }}</td>
 
-                                <td>{{ $nm['tweet_after'] }}</td>
+                                <td>{{ $normalization['tweet_normalization'] }}</td>
 
-                                <td>{{ $nm['category'] }}</td>
+                                <td>{{ $normalization['category'] }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -139,14 +150,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($stopword as $sw)
+                            @foreach ($stemming as $stem)
                             <tr>
                                 <th style="text-align:center;">{{ $loop->iteration }}</th>
-                                <td>{{ $sw['tweet_before'] }}</td>
+                                <td>{{ $stem['tweet_before'] }}</td>
 
-                                <td>{{ $sw['tweet_after'] }}</td>
+                                <td>{{ $stem['tweet_stemming'] }}</td>
 
-                                <td>{{ $sw['category'] }}</td>
+                                <td>{{ $stem['category'] }}</td>
                             </tr>
                             @endforeach
                         </tbody>
