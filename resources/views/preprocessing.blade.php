@@ -20,7 +20,7 @@
         {{ csrf_field() }}
             <!-- Button Preprocessing -->
             <button type="submit" class="btn btn-primary d-block mr- ml-auto">
-                <i class="fas fa-play-circle"></i> Start Preprocessing
+                <i class="fas fa-play-circle"></i> Save Preprocessing
             </button>
             <!-- End Button Preprocessing -->
         </form>

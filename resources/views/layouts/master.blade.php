@@ -119,9 +119,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
+                                    <a href="{{url('labelling')}}" class="nav-link">
                                         <i class="fas fa-tag nav-icon"></i>
-                                        <p>Labeling</p>
+                                        <p>Labelling</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

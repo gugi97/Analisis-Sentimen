@@ -12,5 +12,7 @@ class Dataset extends Model
     protected $table = "dataset_kotor";
     public $timestamps = false;
 
+    protected $primaryKey = "id_tweet" ;
+
     protected $fillable = ['id_tweet', 'user', 'tweet', 'date', 'category', 'datatype'];
 }

@@ -123,7 +123,9 @@ class PreprocessingController extends Controller
                 'category' => $sts['category'],
                 'datatype' => $sts['datatype'],
             ];
-            array_push($tweet_list, $dictTweet);
+            if ($outputstem != ctype_space($outputstem)) {
+                array_push($tweet_list, $dictTweet);
+            }
         }
         return $tweet_list;
     }
@@ -136,10 +138,10 @@ class PreprocessingController extends Controller
     public function store(Request $request)
     {
         $result = $this->stemming();
-        $dataset_bersih = new DatasetBersih;
 
         foreach ($result as $sts) {
-            $dictTweet = DatasetBersih::updateOrCreate([
+            $a = DB::table('dataset_bersih')
+            ->where('id_tweet', $sts['id_tweet'])->insertOrIgnore([
                 'id_tweet' => $sts['id_tweet'],
                 'user' => $sts['user'],
                 'tweet' => $sts['tweet_stemming'],

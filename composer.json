@@ -15,6 +15,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
+        "php-ai/php-ml": "^0.9.0",
         "sastrawi/sastrawi": "^1.2"
     },
     "require-dev": {

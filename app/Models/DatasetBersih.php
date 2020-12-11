@@ -12,5 +12,7 @@ class DatasetBersih extends Model
     protected $table = "dataset_bersih";
     public $timestamps = false;
 
-    protected $fillable = ['id_tweet', 'user', 'tweet', 'date', 'category', 'datatype'];
+    protected $primaryKey = "id_tweet" ;
+
+    protected $fillable = ['id_tweet', 'user', 'tweet', 'date', 'category', 'datatype', 'label'];
 }

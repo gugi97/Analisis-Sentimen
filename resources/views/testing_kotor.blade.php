@@ -141,9 +141,9 @@
                         @foreach ($data as $dataset)
                         <tr>
                             <th style="text-align:center;">{{ $loop->iteration }}</th>
-                            <td>{{ $dataset->user }}</td>
+                            <td style="text-align:center;">{{ $dataset->user }}</td>
                             <td>{{ $dataset->tweet }}</td>
-                            <td>{{ $dataset->date}}</td>
+                            <td style="text-align:center;">{{ $dataset->date}}</td>
                             <td>{{ $dataset->category }}</td>
                         </tr>
                         @endforeach
@@ -175,7 +175,8 @@
             "columnDefs": [{
                 "searchable": false,
                 "orderable": false,
-                "targets": 0
+                "targets": 0,
+                "width": "11%", "targets": 3
             }],
             "order": [
                 [1, 'asc']

@@ -11,3 +11,4 @@ Route::resource('slangword', 'SlangWordController');
 Route::resource('stopword', 'StopWordController');
 
 Route::resource('preprocessing', 'PreprocessingController');
+Route::resource('labelling', 'LabelingController');
