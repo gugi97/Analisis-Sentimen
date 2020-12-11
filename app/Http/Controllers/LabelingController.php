@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DatasetBersih;
+use Illuminate\Support\Facades\DB;
 
 class LabelingController extends Controller
 {
     public function index()
     {
-        $dataset = DatasetBersih::all();
-        return view('labeling')->with('dataset', $dataset);
+        $testing = DB::table('dataset_bersih')->where('datatype', '0')->get();
+        $training = DB::table('dataset_bersih')->where('datatype', '1')->get();
+        return view('labeling', [
+            'testing' => $testing,
+            'training' => $training,
+        ]);
     }
 
     public function create()

@@ -36,129 +36,166 @@
 
         @if(Session::has('success'))
         <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button> 
             <p style="margin-bottom: 0px;">{{ Session::get('success') }}</p>
         </div>
         @endif
         {{-- END ALERT MESSAGE --}}
 
-        <div class="card">
+        <div class="card card-primary card-tabs">
             <!-- Card Header -->
-            <!-- <div class="card-header">
-                <h3 align="center">Slangword List</h3>
-            </div> -->
+            <div class="card-header p-0 pt-1">
+                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="custom-tabs-one-training-tab" data-toggle="pill" href="#custom-tabs-one-training" role="tab" aria-controls="custom-tabs-one-training" aria-selected="true">Dataset Training</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-one-testing-tab" data-toggle="pill" href="#custom-tabs-one-testing" role="tab" aria-controls="custom-tabs-one-testing" aria-selected="false">Dataset Testing</a>
+                    </li>
+                </ul>
+            </div>
             <!-- End Card Header -->
 
             <!-- form start -->
             <div class="card-body">
-                <table id="datatable" class="table table-bordered table-hover table-striped">
-                    <thead>
-                        <tr style="text-align: center;">
-                            <th scope="col">No</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Tweet</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Label</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($dataset as $data)
-                        <tr style="text-align: center;">
-                            <th>{{ $loop->iteration }}</th>
-                            <td>{{ $data->user }}</td>
-                            <td style="text-align:justify;">{{ $data->tweet }}</td>
-                            <td>{{ $data->date}}</td>
-                            <td>{{ $data->category }}</td>
-                            <td>
-                            <form action="{{URL::to('/labelling/'.$data->id_tweet)}}" method="post">
-                                    {{ csrf_field() }}
-                                    @method('PUT')
-                                    <input type="hidden" name="id" value="{{$data->id_tweet}}">
-                                    <div class="form-group">
-                                        <select @switch($data->label)
-                                            @case("positif")
-                                            class="form-control bg-success text-white"
-                                            @break
-                                            @case("netral")
-                                            class="form-control bg-info text-white"
-                                            @break
-                                            @case("negatif")
-                                            class="form-control bg-danger text-white"
-                                            @break
-                                            @default
-                                            class="form-control"
-                                            @endswitch
-                                            name="label" onchange="submit()">
-                                            <option value="" @if (!$data->label)
-                                                selected
-                                                @endif>----</option>
-                                            <option value="positif" @if ($data->label == "positif")
-                                                selected
-                                                @endif
-                                                ><strong>Positif</strong></option>
-                                            <option value="netral" @if ($data->label == "netral")
-                                                selected
-                                                @endif
-                                                ><strong>Netral</strong></option>
-                                            <option value="negatif" @if ($data->label == "negatif")
-                                                selected
-                                                @endif
-                                                ><strong>Negatif</strong></option>
-                                        </select>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-                <!-- Start Edit Modal -->
-                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit Sentiment Label</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            <form role="Insertform" action="/labelling" method="post" id="editForm"
-                                enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    {{ csrf_field() }}
-                                    @method('PUT')
-
-                                    <div class="form-group">
-                                        <label>Label</label>
-                                        <select class="form-control" name="label" id="label" required>
-                                            <option value="positif">Positif</option>
-                                            <option value="netral">Netral</option>
-                                            <option value="negatif">Negatif</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                        <i class="fas fa-undo"></i> Cancel
-                                    </button>
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="far fa-save"></i> Save
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                <div class="tab-content" id="custom-tabs-one-tabContent">
+                    <div class="tab-pane fade show active" id="custom-tabs-one-training" role="tabpanel" aria-labelledby="custom-tabs-one-training-tab">
+                        <table id="datatable1" class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr style="text-align: center;">
+                                    <th scope="col">No</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Tweet</th>
+                                    <th scope="col">Data Type</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Label</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($training as $train)
+                                <tr style="text-align: center;">
+                                    <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $train->user }}</td>
+                                    <td style="text-align:justify;">{{ $train->tweet }}</td>
+                                    <td>{{ $train->datatype}}</td>
+                                    <td>{{ $train->category }}</td>
+                                    <td>
+                                    <form action="{{URL::to('/labelling/'.$train->id_tweet)}}" method="post">
+                                            {{ csrf_field() }}
+                                            @method('PUT')
+                                            <input type="hidden" name="id" value="{{$train->id_tweet}}">
+                                            <div class="form-group">
+                                                <select @switch($train->label)
+                                                    @case("positif")
+                                                    class="form-control bg-success text-white"
+                                                    @break
+                                                    @case("netral")
+                                                    class="form-control bg-info text-white"
+                                                    @break
+                                                    @case("negatif")
+                                                    class="form-control bg-danger text-white"
+                                                    @break
+                                                    @default
+                                                    class="form-control"
+                                                    @endswitch
+                                                    name="label" onchange="submit()">
+                                                    <option value="" @if (!$train->label)
+                                                        selected
+                                                        @endif>----</option>
+                                                    <option value="positif" @if ($train->label == "positif")
+                                                        selected
+                                                        @endif
+                                                        ><strong>Positif</strong></option>
+                                                    <option value="netral" @if ($train->label == "netral")
+                                                        selected
+                                                        @endif
+                                                        ><strong>Netral</strong></option>
+                                                    <option value="negatif" @if ($train->label == "negatif")
+                                                        selected
+                                                        @endif
+                                                        ><strong>Negatif</strong></option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="custom-tabs-one-testing" role="tabpanel" aria-labelledby="custom-tabs-one-testing-tab">
+                        <table id="datatable2" class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr style="text-align: center;">
+                                    <th scope="col">No</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Tweet</th>
+                                    <th scope="col">Data Type</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Label</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($testing as $test)
+                                <tr style="text-align: center;">
+                                    <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $test->user }}</td>
+                                    <td style="text-align:justify;">{{ $test->tweet }}</td>
+                                    <td>{{ $test->datatype}}</td>
+                                    <td>{{ $test->category }}</td>
+                                    <td>
+                                    <form action="{{URL::to('/labelling/'.$test->id_tweet)}}" method="post">
+                                            {{ csrf_field() }}
+                                            @method('PUT')
+                                            <input type="hidden" name="id" value="{{$test->id_tweet}}">
+                                            <div class="form-group">
+                                                <select @switch($test->label)
+                                                    @case("positif")
+                                                    class="form-control bg-success text-white"
+                                                    @break
+                                                    @case("netral")
+                                                    class="form-control bg-info text-white"
+                                                    @break
+                                                    @case("negatif")
+                                                    class="form-control bg-danger text-white"
+                                                    @break
+                                                    @default
+                                                    class="form-control"
+                                                    @endswitch
+                                                    name="label" onchange="submit()">
+                                                    <option value="" @if (!$test->label)
+                                                        selected
+                                                        @endif>----</option>
+                                                    <option value="positif" @if ($test->label == "positif")
+                                                        selected
+                                                        @endif
+                                                        ><strong>Positif</strong></option>
+                                                    <option value="netral" @if ($test->label == "netral")
+                                                        selected
+                                                        @endif
+                                                        ><strong>Netral</strong></option>
+                                                    <option value="negatif" @if ($test->label == "negatif")
+                                                        selected
+                                                        @endif
+                                                        ><strong>Negatif</strong></option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                {{-- End Edit Modal --}}
+                
 
-            <!-- Footer -->
-            <div class="card-footer">
+                <!-- Footer -->
+                <!-- <div class="card-footer">
 
+                </div> -->
+                <!-- End Footer -->
             </div>
-            <!-- End Footer -->
         </div>
     </div>
 </section>
@@ -173,25 +210,45 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        var t = $('#datatable').DataTable({
+        var table1 = $('#datatable1').DataTable({
             "columnDefs": [{
                 "searchable": false,
                 "orderable": false,
                 "targets": [0, 3],
-                "width": "11%", "targets": [3, 5]
             }],
             "order": [
                 [1, 'asc']
             ]
         });
 
-        t.on('order.dt search.dt', function () {
-            t.column(0, {
+        var table2 = $('#datatable2').DataTable({
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": [0, 3],
+            }],
+            "order": [
+                [1, 'asc']
+            ]
+        });
+
+        table1.on('order.dt search.dt', function () {
+            table1.column(0, {
                 search: 'applied',
                 order: 'applied'
             }).nodes().each(function (cell, i) {
                 cell.innerHTML = i + 1;
-                t.cell(cell).invalidate('dom');
+                table1.cell(cell).invalidate('dom');
+            });
+        }).draw();
+
+        table2.on('order.dt search.dt', function () {
+            table2.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+                table2.cell(cell).invalidate('dom');
             });
         }).draw();
 
