@@ -18,13 +18,17 @@ class DatasetTestingKotorController extends Controller
 
         $array_indihome = array('category' => 'indihome', 'datatype' => '0');
         $arrayf_firstmedia = array('category' => 'firstmedia', 'datatype' => '0');
-        $data_indihome = DB::table('dataset_kotor')->where($array_indihome)->count();
-        $data_firstmedia = DB::table('dataset_kotor')->where($arrayf_firstmedia)->count();
+        $data_indihome = DB::table('dataset_kotor')->where($array_indihome)->get();
+        $indihome = DB::table('dataset_kotor')->where($array_indihome)->count();
+        $data_firstmedia = DB::table('dataset_kotor')->where($arrayf_firstmedia)->get();
+        $firstmedia = DB::table('dataset_kotor')->where($arrayf_firstmedia)->count();
 
         return view('testing_kotor', [
             'data' => $dataset,
-            'indihome' => $data_indihome,
-            'firstmedia' => $data_firstmedia,
+            'data_indihome' => $data_indihome,
+            'data_firstmedia' => $data_firstmedia,
+            'indihome' => $indihome,
+            'firstmedia' => $firstmedia,
         ]);
     }
 

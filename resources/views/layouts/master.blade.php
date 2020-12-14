@@ -38,7 +38,9 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-
+                <span style="font-style: italic; color: white;">
+                    <b>TUGAS AKHIR</b>
+                </span>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -47,8 +49,8 @@
         <aside class="main-sidebar sidebar-light-primary elevation-4 sidebar-no-expand">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
-                <img src="AdminLTE/dist/img/twitter-icon.png" alt="Twitter Logo" class="brand-image">
-                <span class="brand-text font-weight-bolder" style="color:#1DA1F2;">Analisis Sentimen</span>
+                <img src="AdminLTE/dist/img/twitter-icon.png" alt="Twitter Logo" class="brand-image" style="margin-left: 0.4rem !important;">
+                <span class="brand-text font-weight-bolder" style="color:#1DA1F2;">Sentiment Analysis</span>
             </a>
 
             <!-- Sidebar -->
@@ -122,6 +124,12 @@
                                     <a href="{{url('labelling')}}" class="nav-link">
                                         <i class="fas fa-tag nav-icon"></i>
                                         <p>Labelling</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('tfidf')}}" class="nav-link">
+                                        <i class="fas fa-balance-scale nav-icon"></i>
+                                        <p>TF-IDF</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

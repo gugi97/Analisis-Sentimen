@@ -79,7 +79,7 @@
                                     <td style="text-align:justify;">{{ $train->tweet }}</td>
                                     <td>{{ $train->datatype}}</td>
                                     <td>{{ $train->category }}</td>
-                                    <td>
+                                    <td style="text-align:center; width: 100px;">
                                     <form action="{{URL::to('/labelling/'.$train->id_tweet)}}" method="post">
                                             {{ csrf_field() }}
                                             @method('PUT')
@@ -143,7 +143,7 @@
                                     <td style="text-align:justify;">{{ $test->tweet }}</td>
                                     <td>{{ $test->datatype}}</td>
                                     <td>{{ $test->category }}</td>
-                                    <td>
+                                    <td style="text-align:center; width: 100px;">
                                     <form action="{{URL::to('/labelling/'.$test->id_tweet)}}" method="post">
                                             {{ csrf_field() }}
                                             @method('PUT')
@@ -252,7 +252,7 @@
             });
         }).draw();
 
-        var table = $('#datatable').DataTable();
+        // var table = $('#datatable').DataTable();
     });
 
 </script>

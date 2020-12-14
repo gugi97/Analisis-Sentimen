@@ -22,8 +22,8 @@
 <!-- Main content -->
 <section class="content">
     <div class="callout callout-info">
-        <h5>Analisis Sentimen</h5>
-        <p>Merupakan aplikasi web untuk melakukan analisis sentimen terhadap pengguna twitter terkait layanan provider Indihome dan First Media</p>
+        <h5>Sentiment Analysis</h5>
+        <p>This application is used to classify data on complaints or opinions of Twitter users regarding Indihome and First Media services to find out the quality of their services.</p>
     </div>
 
     <!-- INFO BOX -->

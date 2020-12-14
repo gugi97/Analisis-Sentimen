@@ -77,80 +77,154 @@
         </div>
         <!-- END INFO BOX -->
 
-        <div class="card">
-            <!-- <div class="card-header">
-                <center>
-                    <h4>Jumlah Dataset</h4>
-                </center>
-            </div> -->
+        <div class="card card-primary card-tabs">
+            <div class="card-header p-0 pt-1">
+                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="custom-tabs-one-indihome-tab" data-toggle="pill" href="#custom-tabs-one-indihome" role="tab" aria-controls="custom-tabs-one-indihome" aria-selected="true">Data Indihome</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-one-firstmedia-tab" data-toggle="pill" href="#custom-tabs-one-firstmedia" role="tab" aria-controls="custom-tabs-one-firstmedia" aria-selected="false">Data Firstmedia</a>
+                    </li>
+                </ul>
+            </div>
             <!-- /.card-header -->
 
             <div class="card-body">
-                <!-- Button trigger Import Excel modal -->
-                <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#importExcel">
-                    <i class="fas fa-plus-circle"></i> Import Excel
-                </button>
-                <!-- End Trigger Button -->
+                <div class="tab-content" id="custom-tabs-one-tabContent">
+                    <div class="tab-pane fade show active" id="custom-tabs-one-indihome" role="tabpanel" aria-labelledby="custom-tabs-one-indihome-tab">
+                        <!-- Button trigger Import Excel modal -->
+                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#importExcel">
+                            <i class="fas fa-plus-circle"></i> Import Excel
+                        </button>
+                        <!-- End Trigger Button -->
 
-                <!-- Import Excel Modal -->
-                <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            <form method="post" role="Insertform" action="{{ action('DatasetTestingKotorController@store') }}" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    {{ csrf_field() }}
-                                    <label>File Input</label>
-                                    <div class="form-group">
-                                        <input type="file" name="file" required="required">
-                                        <p>*Only (.xls, .xlsx) file allowed to upload here</p>
+                        <!-- Import Excel Modal -->
+                        <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    
-                                </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-primary">
-                                        Import
-                                    </button>
+                                    <form method="post" role="Insertform" action="{{ action('DatasetTestingKotorController@store') }}" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            {{ csrf_field() }}
+                                            <label>File Input</label>
+                                            <div class="form-group">
+                                                <input type="file" name="file" required="required">
+                                                <p>*Only (.xls, .xlsx) file allowed to upload here</p>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">
+                                                Import
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
+                            </div>
                         </div>
+                        <!-- End Modal -->
+
+                        <!-- Tabel Tweet -->
+                        <table id="datatable1" class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr style="text-align: center;">
+                                    <th scope="col">No</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Tweet</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Category</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($data_indihome as $dataset)
+                                <tr>
+                                    <th style="text-align:center;">{{ $loop->iteration }}</th>
+                                    <td style="text-align:center;">{{ $dataset->user }}</td>
+                                    <td>{{ $dataset->tweet }}</td>
+                                    <td style="text-align:center; width: 100px;">{{ $dataset->date}}</td>
+                                    <td>{{ $dataset->category }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <!-- End Tabel Tweet -->
+                    </div>
+                    <div class="tab-pane fade" id="custom-tabs-one-firstmedia" role="tabpanel" aria-labelledby="custom-tabs-one-firstmedia-tab">
+                        <!-- Button trigger Import Excel modal -->
+                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#importExcel2">
+                            <i class="fas fa-plus-circle"></i> Import Excel
+                        </button>
+                        <!-- End Trigger Button -->
+
+                        <!-- Import Excel Modal -->
+                        <div class="modal fade" id="importExcel2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <form method="post" role="Insertform" action="{{ action('DatasetTestingKotorController@store') }}" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            {{ csrf_field() }}
+                                            <label>File Input</label>
+                                            <div class="form-group">
+                                                <input type="file" name="file" required="required">
+                                                <p>*Only (.xls, .xlsx) file allowed to upload here</p>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">
+                                                Import
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Modal -->
+
+                        <!-- Tabel Tweet -->
+                        <table id="datatable2" class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr style="text-align: center;">
+                                    <th scope="col">No</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Tweet</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Category</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($data_firstmedia as $dataset)
+                                <tr>
+                                    <th style="text-align:center;">{{ $loop->iteration }}</th>
+                                    <td style="text-align:center;">{{ $dataset->user }}</td>
+                                    <td>{{ $dataset->tweet }}</td>
+                                    <td style="text-align:center; width: 100px;">{{ $dataset->date}}</td>
+                                    <td>{{ $dataset->category }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <!-- End Tabel Tweet -->
                     </div>
                 </div>
-                <!-- End Modal -->
-
-                <!-- Tabel Tweet -->
-                <table id="datatable" class="table table-bordered table-hover table-striped">
-                    <thead>
-                        <tr style="text-align: center;">
-                            <th scope="col">No</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Tweet</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Category</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $dataset)
-                        <tr>
-                            <th style="text-align:center;">{{ $loop->iteration }}</th>
-                            <td style="text-align:center;">{{ $dataset->user }}</td>
-                            <td>{{ $dataset->tweet }}</td>
-                            <td style="text-align:center;">{{ $dataset->date}}</td>
-                            <td>{{ $dataset->category }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <!-- End Tabel Tweet -->
-
             </div>
             <!-- /.card-body -->
 
@@ -171,25 +245,45 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var t = $('#datatable').DataTable({
+        var table1 = $('#datatable1').DataTable({
             "columnDefs": [{
                 "searchable": false,
                 "orderable": false,
-                "targets": 0,
-                "width": "11%", "targets": 3
+                "targets": [0, 3],
             }],
             "order": [
                 [1, 'asc']
             ]
         });
 
-        t.on('order.dt search.dt', function () {
-            t.column(0, {
+        var table2 = $('#datatable2').DataTable({
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": [0, 3],
+            }],
+            "order": [
+                [1, 'asc']
+            ]
+        });
+
+        table1.on('order.dt search.dt', function () {
+            table1.column(0, {
                 search: 'applied',
                 order: 'applied'
             }).nodes().each(function (cell, i) {
                 cell.innerHTML = i + 1;
-                t.cell(cell).invalidate('dom');
+                table1.cell(cell).invalidate('dom');
+            });
+        }).draw();
+
+        table2.on('order.dt search.dt', function () {
+            table2.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+                table2.cell(cell).invalidate('dom');
             });
         }).draw();
     });
