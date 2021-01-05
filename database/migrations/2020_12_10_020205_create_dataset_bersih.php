@@ -21,6 +21,7 @@ class CreateDatasetBersih extends Migration
             $table->string('category', 128);
             $table->string('datatype', 2);
             $table->string('label', 20)->nullable();
+            $table->string('predict_label', 20)->nullable();
         });
     }
 

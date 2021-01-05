@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Daset Training</h1>
+                <h1>Training Data</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Daset Training</li>
+                    <li class="breadcrumb-item active">Training Data</li>
                 </ol>
             </div>
         </div>
@@ -52,7 +52,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text" style="color: #DC3545; font-weight: 700; font-size: 13px;">
-                            Data Indihome
+                            Indihome Data
                         </span>
                         <span class="info-box-number" style="font-size: 20px; font-family: cursive;">{{$indihome}}
                             Tweet</span>
@@ -68,7 +68,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text" style="color: #3B60AD; font-weight: 700; font-size: 13px;">
-                            Data Firstmedia
+                            Firstmedia Data
                         </span>
                         <span class="info-box-number" style="font-size: 20px; font-family: cursive;">{{$firstmedia}}
                             Tweet</span>
@@ -82,10 +82,10 @@
             <div class="card-header p-0 pt-1">
                 <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="custom-tabs-one-indihome-tab" data-toggle="pill" href="#custom-tabs-one-indihome" role="tab" aria-controls="custom-tabs-one-indihome" aria-selected="true">Data Indihome</a>
+                        <a class="nav-link active" id="custom-tabs-one-indihome-tab" data-toggle="pill" href="#custom-tabs-one-indihome" role="tab" aria-controls="custom-tabs-one-indihome" aria-selected="true">Indihome Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-one-firstmedia-tab" data-toggle="pill" href="#custom-tabs-one-firstmedia" role="tab" aria-controls="custom-tabs-one-firstmedia" aria-selected="false">Data Firstmedia</a>
+                        <a class="nav-link" id="custom-tabs-one-firstmedia-tab" data-toggle="pill" href="#custom-tabs-one-firstmedia" role="tab" aria-controls="custom-tabs-one-firstmedia" aria-selected="false">Firstmedia Data</a>
                     </li>
                 </ul>
             </div>

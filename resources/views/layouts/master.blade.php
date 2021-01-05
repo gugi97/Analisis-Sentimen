@@ -94,13 +94,13 @@
                                 <li class="nav-item">
                                     <a href="{{url('trainingkotor')}}" class="nav-link {{ set_active('trainingkotor.index') }}">
                                         <i class="fas fa-database nav-icon"></i>
-                                        <p>Data Training</p>
+                                        <p>Training Data</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{url('testingkotor')}}" class="nav-link {{ set_active('testingkotor.index') }}">
                                         <i class="fas fa-tasks nav-icon"></i>
-                                        <p>Data Testing</p>
+                                        <p>Testing Data</p>
                                     </a>
                                 </li>
                             </ul>
@@ -127,12 +127,6 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{url('tfidf')}}" class="nav-link">
-                                        <i class="fas fa-balance-scale nav-icon"></i>
-                                        <p>TF-IDF</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="{{url('slangword')}}" class="nav-link">
                                         <i class="fas fa-list-alt nav-icon"></i>
                                         <p>Slangword List</p>
@@ -145,6 +139,24 @@
                                     </a>
                                 </li>
                             </ul>
+                            <li class="nav-item">
+                                    <a href="{{url('klasifikasi')}}" class="nav-link">
+                                        <i class="fas fa-sitemap nav-icon"></i>
+                                        <p>Classification</p>
+                                    </a>
+                            </li>
+                            <li class="nav-item">
+                                    <a href="{{url('visualisasi')}}" class="nav-link">
+                                        <i class="fas fa-chart-pie nav-icon"></i>
+                                        <p>Visualization</p>
+                                    </a>
+                            </li>
+                            <li class="nav-item">
+                                    <a href="{{url('akurasi')}}" class="nav-link">
+                                        <i class="fas fa-poll nav-icon"></i>
+                                        <p>Accuracy</p>
+                                    </a>
+                            </li>
                         </li>
                     </ul>
                 </nav>

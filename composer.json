@@ -42,7 +42,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/Helper.php"
+            "app/Helpers/Helper.php",
+            "app/Helpers/Naivebayes.php"
         ]
     },
     "autoload-dev": {
