@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DatasetBersih;
+use App\Models\Dataset;
 use Illuminate\Support\Facades\DB;
 
 class LabelingController extends Controller
 {
     public function index()
     {
-        $testing = DB::table('dataset_bersih')->where('datatype', '0')->get();
-        $training = DB::table('dataset_bersih')->where('datatype', '1')->get();
+        $testing = DB::table('dataset_kotor')->where('datatype', '0')->get();
+        $training = DB::table('dataset_kotor')->where('datatype', '1')->get();
         return view('labeling', [
             'testing' => $testing,
             'training' => $training,
@@ -47,9 +47,9 @@ class LabelingController extends Controller
             return redirect('/labelling')->with($message);
         }
 
-        $dataset = DatasetBersih::where('id_tweet',$id)->first();
+        $dataset = Dataset::where('id_tweet',$id)->first();
 
-        $dataset->label = $request->input('label');
+        $dataset->manual_label = $request->input('label');
 
         if ($dataset->save()) {
             $message = [

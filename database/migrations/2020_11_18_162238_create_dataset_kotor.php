@@ -20,6 +20,7 @@ class CreateDatasetKotor extends Migration
             $table->timestamp('date');
             $table->string('category', 128);
             $table->string('datatype', 2);
+            $table->string('manual_label', 20)->nullable();
         });
     }
 

@@ -223,7 +223,7 @@
                                     <th style="text-align:center;">{{ $loop->iteration }}</th>
                                     <td style="text-align:center;">{{ $dataset->user }}</td>
                                     <td>{{ $dataset->tweet }}</td>
-                                    <td style="text-align:center; width: 100px;">{{ $dataset->date}}</td>
+                                    <td style="text-align:center; width: 100px;">{{ $dataset->date }}</td>
                                     <td>{{ $dataset->category }}</td>
                                 </tr>
                                 @endforeach

@@ -85,7 +85,7 @@
                                             @method('PUT')
                                             <input type="hidden" name="id" value="{{$train->id_tweet}}">
                                             <div class="form-group">
-                                                <select @switch($train->label)
+                                                <select @switch($train->manual_label)
                                                     @case("positif")
                                                     class="form-control bg-success text-white"
                                                     @break
@@ -99,18 +99,18 @@
                                                     class="form-control"
                                                     @endswitch
                                                     name="label" onchange="submit()">
-                                                    <option value="" @if (!$train->label)
+                                                    <option value="" @if (!$train->manual_label)
                                                         selected
                                                         @endif>----</option>
-                                                    <option value="positif" @if ($train->label == "positif")
+                                                    <option value="positif" @if ($train->manual_label == "positif")
                                                         selected
                                                         @endif
                                                         ><strong>Positif</strong></option>
-                                                    <option value="netral" @if ($train->label == "netral")
+                                                    <option value="netral" @if ($train->manual_label == "netral")
                                                         selected
                                                         @endif
                                                         ><strong>Netral</strong></option>
-                                                    <option value="negatif" @if ($train->label == "negatif")
+                                                    <option value="negatif" @if ($train->manual_label == "negatif")
                                                         selected
                                                         @endif
                                                         ><strong>Negatif</strong></option>
@@ -149,7 +149,7 @@
                                             @method('PUT')
                                             <input type="hidden" name="id" value="{{$test->id_tweet}}">
                                             <div class="form-group">
-                                                <select @switch($test->label)
+                                                <select @switch($test->manual_label)
                                                     @case("positif")
                                                     class="form-control bg-success text-white"
                                                     @break
@@ -163,18 +163,18 @@
                                                     class="form-control"
                                                     @endswitch
                                                     name="label" onchange="submit()">
-                                                    <option value="" @if (!$test->label)
+                                                    <option value="" @if (!$test->manual_label)
                                                         selected
                                                         @endif>----</option>
-                                                    <option value="positif" @if ($test->label == "positif")
+                                                    <option value="positif" @if ($test->manual_label == "positif")
                                                         selected
                                                         @endif
                                                         ><strong>Positif</strong></option>
-                                                    <option value="netral" @if ($test->label == "netral")
+                                                    <option value="netral" @if ($test->manual_label == "netral")
                                                         selected
                                                         @endif
                                                         ><strong>Netral</strong></option>
-                                                    <option value="negatif" @if ($test->label == "negatif")
+                                                    <option value="negatif" @if ($test->manual_label == "negatif")
                                                         selected
                                                         @endif
                                                         ><strong>Negatif</strong></option>

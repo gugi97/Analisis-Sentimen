@@ -14,5 +14,5 @@ class DatasetBersih extends Model
 
     protected $primaryKey = "id_tweet" ;
 
-    protected $fillable = ['id_tweet', 'user', 'tweet', 'date', 'category', 'datatype', 'label', 'predict_label'];
+    protected $fillable = ['id_tweet', 'user', 'tweet', 'date', 'category', 'datatype', 'predict_label'];
 }

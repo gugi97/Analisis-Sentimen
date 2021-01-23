@@ -33,13 +33,12 @@
         </div>
         @endif
 
-        {{-- notifikasi sukses --}}
-        @if ( session('success'))
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ session('success') }}</strong>
-        </div>
-        @endif
+        @if ($message = Session::get('gagal'))
+			<div class="alert alert-danger alert-block">
+				<button type="button" class="close" data-dismiss="alert">×</button> 
+				<strong>{{ $message }}</strong>
+			</div>
+		@endif
         {{-- END ALERT MESSAGE --}}
 
         <div class="card">
@@ -60,16 +59,56 @@
                             <th scope="col">Tweet</th>
                             <th scope="col">Date</th>
                             <th scope="col">Category</th>
+                            <th scope="col">Manual Label</th>
+                            <th scope="col">Predict Label</th>
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach ($data_bersih as $bersih)
                         <tr>
-                            <th style="text-align:center;"></th>
-                            <td style="text-align:center;"></td>
-                            <td></td>
-                            <td style="text-align:center;"></td>
-                            <td></td>
+                            <th style="text-align:center;">{{ $loop->iteration }}</th>
+                            <td style="text-align:center;">{{ $bersih->user }}</td>
+                            <td>{{ $bersih->tweet }}</td>
+                            <td style="text-align:center; width: 100px;">{{ $bersih->date }}</td>
+                            <td>
+                                {{ $bersih->category }}
+                            </td>
+                            @foreach($data_kotor as $kotor)
+                                @if($bersih->id_tweet == $kotor->id_tweet)
+                                    <td style="text-align:center;">
+                                        <div @switch($kotor->manual_label)
+                                            @case("positif")
+                                                class="form-control bg-success text-white"
+                                            @break
+                                            @case("netral")
+                                                class="form-control bg-info text-white"
+                                            @break
+                                            @case("negatif")
+                                                class="form-control bg-danger text-white"
+                                            @break
+                                            @endswitch>
+                                            {{$kotor->manual_label}}
+                                        </div>
+                                    </td>
+                                @endif
+                            @endforeach
+                            <td style="text-align:center;">
+                                <div @switch($bersih->predict_label)
+                                        @case("positif")
+                                            class="form-control bg-success text-white"
+                                        @break
+                                        @case("netral")
+                                            class="form-control bg-info text-white"
+                                        @break
+                                        @case("negatif")
+                                            class="form-control bg-danger text-white"
+                                        @break
+                                        @endswitch>
+                                    {{$bersih->predict_label}}
+                                </div>
+                            </td>
                         </tr>
+                    @endforeach
                     </tbody>
                 </table>
                 <!-- End Tabel Tweet -->
@@ -85,6 +124,8 @@
         <!-- /.card -->
     </div>
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script src="/AdminLTE/plugins/jquery/jquery.slim.min.js"></script>
 <script src="/AdminLTE/plugins/popper/umd/popper.min.js"></script>
@@ -115,7 +156,32 @@
             });
         }).draw();
     });
-
 </script>
+@if($x == 'label')
+<script>
+    Swal.fire({
+    icon: 'warning',
+    title: 'Label Manual Masih Kosong',
+    text: 'Lakukan Proses Pelabelan Semua Data Terlebih Dahulu',
+    confirmButtonText:
+    '<a href="{{url('labelling')}}" style="text-decoration: none; color: white;">Labeling</a>',
+    })
+</script>
+@endif
+@if($x == 'dataset')
+<script>
+    Swal.fire({
+    icon: 'warning',
+    title: 'Dataset Tidak Lengkap',
+    width: 600,
+    html: 'Lengkapi Dataset dengan data <b>Testing</b> dan <b>Training</b>',
+    confirmButtonText:
+    '<a href="{{url('trainingkotor')}}" style="text-decoration: none; color: white;">Tambah Data Training</a>',
+    showCancelButton: true,
+    cancelButtonText:
+    '<a href="{{url('testingkotor')}}" style="text-decoration: none; color: white;">Tambah Data Testing</a>',
+    })
+</script>
+@endif
 
 @endsection

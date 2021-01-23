@@ -17,9 +17,10 @@ class DatasetTrainingKotorController extends Controller
         $dataset = Dataset::where('datatype', '1')->get();
 
         $array_indihome = array('category' => 'indihome', 'datatype' => '1');
-        $arrayf_firstmedia = array('category' => 'firstmedia', 'datatype' => '1');
-        $data_indihome = DB::table('dataset_kotor')->where($array_indihome)->get();
         $indihome = DB::table('dataset_kotor')->where($array_indihome)->count();
+        $data_indihome = DB::table('dataset_kotor')->where($array_indihome)->get();
+
+        $arrayf_firstmedia = array('category' => 'firstmedia', 'datatype' => '1');
         $data_firstmedia = DB::table('dataset_kotor')->where($arrayf_firstmedia)->get();
         $firstmedia = DB::table('dataset_kotor')->where($arrayf_firstmedia)->count();
 

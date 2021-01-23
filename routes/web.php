@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/klasifikasi', 'KlasifikasiController@index')->name('klasifikasi');
+Route::get('/akurasi', 'AkurasiController@index')->name('akurasi');
 
 Route::resource('testingkotor', 'DatasetTestingKotorController');
 Route::resource('trainingkotor', 'DatasetTrainingKotorController');

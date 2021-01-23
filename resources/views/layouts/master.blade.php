@@ -49,8 +49,8 @@
         <aside class="main-sidebar sidebar-light-primary elevation-4 sidebar-no-expand">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
-                <img src="AdminLTE/dist/img/twitter-icon.png" alt="Twitter Logo" class="brand-image" style="margin-left: 0.4rem !important;">
-                <span class="brand-text font-weight-bolder" style="color:#1DA1F2;">Sentiment Analysis</span>
+                <img src="AdminLTE/dist/img/twitter-icon.png" alt="Twitter Logo" class="brand-image">
+                <span class="brand-text font-weight-bolder" style="color:#1DA1F2; margin-left: -3px !important;">Sentiment Analysis</span>
             </a>
 
             <!-- Sidebar -->
@@ -99,7 +99,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{url('testingkotor')}}" class="nav-link {{ set_active('testingkotor.index') }}">
-                                        <i class="fas fa-tasks nav-icon"></i>
+                                        <i class="fas fa-database nav-icon"></i>
                                         <p>Testing Data</p>
                                     </a>
                                 </li>
@@ -146,15 +146,15 @@
                                     </a>
                             </li>
                             <li class="nav-item">
-                                    <a href="{{url('visualisasi')}}" class="nav-link">
-                                        <i class="fas fa-chart-pie nav-icon"></i>
-                                        <p>Visualization</p>
-                                    </a>
-                            </li>
-                            <li class="nav-item">
                                     <a href="{{url('akurasi')}}" class="nav-link">
                                         <i class="fas fa-poll nav-icon"></i>
                                         <p>Accuracy</p>
+                                    </a>
+                            </li>
+                            <li class="nav-item">
+                                    <a href="{{url('visualisasi')}}" class="nav-link">
+                                        <i class="fas fa-chart-pie nav-icon"></i>
+                                        <p>Visualization</p>
                                     </a>
                             </li>
                         </li>
@@ -169,6 +169,7 @@
         <div class="content-wrapper">
             @yield('content')
             <!-- /.content -->
+            @include('sweetalert::alert')
         </div>
         <!-- /.content-wrapper -->
 

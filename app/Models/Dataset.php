@@ -14,5 +14,5 @@ class Dataset extends Model
 
     protected $primaryKey = "id_tweet" ;
 
-    protected $fillable = ['id_tweet', 'user', 'tweet', 'date', 'category', 'datatype'];
+    protected $fillable = ['id_tweet', 'user', 'tweet', 'date', 'category', 'datatype', 'manual_label',];
 }
