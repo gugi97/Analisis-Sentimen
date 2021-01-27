@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Dataset;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LabelingController extends Controller
@@ -25,7 +25,51 @@ class LabelingController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $data = Dataset::all();
+        $data_bersih = DatasetBersih::all();
+
+        if (count($data_bersih) < 1) {
+            return redirect()->back()->with('warning', 'Do Preprocessing First');
+        }
+
+        $positif = PositifWord::all();
+        foreach ($positif as $result) {
+            $kamusPositif[] = $result->word;
+        };
+
+        $negatif = NegatifWord::all();
+        foreach ($negatif as $result) {
+            $kamusNegatif[] = $result->word;
+        };
+
+        $i = 0;
+        foreach ($data as $result) {
+            //menampung nilai skor pertweet
+            $skor = 0;
+            $kata = explode(" ", ($data_bersih[$i]['tweet']));
+
+            for ($j = 0; $j < count($kata); $j++) {
+                if (in_array($kata[$j], $kamusPositif)) {
+                    $skor++;
+                }
+                if (in_array($kata[$j], $kamusNegatif)) {
+                    $skor--;
+                }
+            }
+            $i = $i + 1;
+
+            if ($skor > 0) {
+                $result->manual_label = 'positif';
+                $result->save();
+            } elseif ($skor < 0) {
+                $result->manual_label = 'negatif';
+                $result->save();
+            }else{
+                continue;
+            }
+            
+        }
+        return redirect()->back()->with('success', 'Data Saved');
     }
 
     public function show($id)
@@ -47,7 +91,7 @@ class LabelingController extends Controller
             return redirect('/labelling')->with($message);
         }
 
-        $dataset = Dataset::where('id_tweet',$id)->first();
+        $dataset = Dataset::where('id_tweet', $id)->first();
 
         $dataset->manual_label = $request->input('label');
 

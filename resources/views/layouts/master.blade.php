@@ -58,8 +58,7 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-2 pb-2 mb-3 d-flex">
                     <div class="image">
-                        <img src="AdminLTE/dist/img/1711500742.jpg" class="img-circle " alt="User Image"
-                            id="profile-image" style="width: 65px; height: 65px">
+                        <img src="AdminLTE/dist/img/1711500742.jpg" class="img-circle " alt="User Image" id="profile-image" style="width: 65px; height: 65px">
                     </div>
                     <div class="info">
                         <div id="profile-desc">
@@ -71,8 +70,7 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview"
-                        role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="{{url ('/')}}" class="nav-link {{ set_active('home') }}">
@@ -138,25 +136,31 @@
                                         <p>Stopword List</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{url('kamus')}}" class="nav-link">
+                                        <i class="fas fa-book nav-icon"></i>
+                                        <p>Dictionary List</p>
+                                    </a>
+                                </li>
                             </ul>
-                            <li class="nav-item">
-                                    <a href="{{url('klasifikasi')}}" class="nav-link">
-                                        <i class="fas fa-sitemap nav-icon"></i>
-                                        <p>Classification</p>
-                                    </a>
-                            </li>
-                            <li class="nav-item">
-                                    <a href="{{url('akurasi')}}" class="nav-link">
-                                        <i class="fas fa-poll nav-icon"></i>
-                                        <p>Accuracy</p>
-                                    </a>
-                            </li>
-                            <li class="nav-item">
-                                    <a href="{{url('visualisasi')}}" class="nav-link">
-                                        <i class="fas fa-chart-pie nav-icon"></i>
-                                        <p>Visualization</p>
-                                    </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="{{url('klasifikasi')}}" class="nav-link">
+                                <i class="fas fa-sitemap nav-icon"></i>
+                                <p>Classification</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('akurasi')}}" class="nav-link">
+                                <i class="fas fa-poll nav-icon"></i>
+                                <p>Accuracy</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('visualisasi')}}" class="nav-link">
+                                <i class="fas fa-chart-pie nav-icon"></i>
+                                <p>Visualization</p>
+                            </a>
+                        </li>
                         </li>
                     </ul>
                 </nav>
@@ -200,9 +204,9 @@
     <script src="/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
 
-            $('#pushmenu').click(function () {
+            $('#pushmenu').click(function() {
                 if ($("body").hasClass("sidebar-collapse")) {
                     $('#profile-image').css('width', '60px');
                     $('#profile-image').css('height', '60px');
@@ -214,7 +218,6 @@
                 }
             });
         });
-
     </script>
 </body>
 

@@ -33,12 +33,6 @@
             </ul>
         </div>
         @endif
-
-        @if(Session::has('success'))
-        <div class="alert alert-success">
-            <p style="margin-bottom: 0px;">{{ Session::get('success') }}</p>
-        </div>
-        @endif
         {{-- END ALERT MESSAGE --}}
 
         <div class="card">
@@ -197,9 +191,9 @@
             </div>
 
             <!-- Footer -->
-            <div class="card-footer">
+            <!-- <div class="card-footer">
 
-            </div>
+            </div> -->
             <!-- End Footer -->
         </div>
     </div>

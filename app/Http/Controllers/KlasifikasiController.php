@@ -26,8 +26,8 @@ class KlasifikasiController extends Controller
         $data_testing_bersih = DatasetBersih::where('datatype', '0')->get();
 
         $x = NULL; //flag warning
-        if($label_null->count() == 0){
-            if($data_training_bersih->count() > 0 && $data_testing_bersih->count() > 0){
+        if ($label_null->count() == 0) {
+            if ($data_training_bersih->count() > 0 && $data_testing_bersih->count() > 0) {
                 $this->klasifikasi();
                 $x = 'aman';
                 return view('klasifikasi', [
@@ -35,8 +35,7 @@ class KlasifikasiController extends Controller
                     'data_kotor' => $data_testing_kotor,
                     'x' => $x,
                 ]);
-            }
-            else{
+            } else {
                 // echo 'isi dataset kurang training/testing';
                 $x = 'dataset';
                 return view('klasifikasi', [
@@ -45,7 +44,7 @@ class KlasifikasiController extends Controller
                     'x' => $x,
                 ]);
             }
-        }else{
+        } else {
             $x = 'label';
             return view('klasifikasi', [
                 'data_bersih' => $data_testing_bersih,
@@ -72,20 +71,20 @@ class KlasifikasiController extends Controller
         }
 
         // Memanggil dataset kotor
-        $dataset_kotor = Dataset::where('datatype', '1')->get();      
+        $dataset_kotor = Dataset::where('datatype', '1')->get();
         foreach ($dataset_kotor as $data) {
-           $manual_label[] = $data->manual_label;
+            $manual_label[] = $data->manual_label;
         }
 
         // Bring Data to wrap words with WordTokenizer()
         $tokenize = new WordTokenizer();
         // inisialisasi fungsi token counter
         $vectorizer = new TokenCountVectorizer($tokenize);
-        
+
         // Convert it to WordVector (Build the dictionary)
         $vectorizer->fit($tweet);
         $vocabulary = $vectorizer->getVocabulary();
-        
+
         /* Transform the provided text samples into a vectorized list.
         menghitung term frequency per document (tweet) dari kumpulan token berdasarkan semua tweet */
         $tweet_transform = $tweet;

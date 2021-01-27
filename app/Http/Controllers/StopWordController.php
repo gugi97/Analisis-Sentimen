@@ -21,7 +21,7 @@ class StopWordController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'stop' => ['required', 'filled', 'alpha', 'unique:slangword,mean'],
+            'stop' => ['required', 'filled', 'alpha', 'unique:stopword,word'],
         ]);
 
         $stop = new Stopword;

@@ -17,7 +17,6 @@ class PreprocessingController extends Controller
     public function index(Request $request)
     {
         $dataset = Dataset::all();
-
         $filtering = $this->filtering();
         $stemming = $this->stemming();
 
@@ -30,7 +29,6 @@ class PreprocessingController extends Controller
 
     public function show($id)
     {
-
     }
 
     public function filtering()
@@ -71,60 +69,12 @@ class PreprocessingController extends Controller
 
             //amp -> " "
             $tweet_string = preg_replace('/\s(amp*)\s/i', ' ', $tweet_string);
-            //pd -> pada
-            $tweet_string = preg_replace('/\s(pd*)\s/i', ' pada ', $tweet_string);
-            //sw -> story whatsapp
-            $tweet_string = preg_replace('/\s(sw*)\s/i', ' story whatsapp ', $tweet_string);
-            //kl -> kalau
-            $tweet_string = preg_replace('/\s(kl*)\s/i', ' kalau ', $tweet_string);
-            //knp -> kenapa
-            $tweet_string = preg_replace('/\s(knp*)\s/i', ' kenapa ', $tweet_string);
-            //ak -> aku
-            $tweet_string = preg_replace('/\s(ak*)\s/i', ' aku ', $tweet_string);
-            //sy -> saya
-            $tweet_string = preg_replace('/\s(sy*)\s/i', ' saya ', $tweet_string);
-            //org -> orang
-            $tweet_string = preg_replace('/\s(org*)\s/i', ' orang ', $tweet_string);
-            //aja -> saja
-            $tweet_string = preg_replace('/\s(aja*)\s/i', ' saja ', $tweet_string);
-            //ato -> atau
-            $tweet_string = preg_replace('/\s(ato*)\s/i', ' atau ', $tweet_string);
-            //dlm -> dalam
-            $tweet_string = preg_replace('/\s(dlm*)\s/i', ' dalam ', $tweet_string);
-            //no -> nomor
-            $tweet_string = preg_replace('/\s(no*)\s/i', ' nomor ', $tweet_string);
-            //lg -> lagi
-            $tweet_string = preg_replace('/\s(lg*)\s/i', ' lagi ', $tweet_string);
-            //gk -> enggak
-            $tweet_string = preg_replace('/\s(gk*)\s/i', ' enggak ', $tweet_string);
-            //ga -> enggak
-            $tweet_string = preg_replace('/\s(ga*)\s/i', ' enggak ', $tweet_string);
-            //gak -> enggak
-            $tweet_string = preg_replace('/\s(gak*)\s/i', ' enggak ', $tweet_string);
-            //udh -> sudah
-            $tweet_string = preg_replace('/\s(udh*)\s/i', ' sudah ', $tweet_string);
-            //udah -> sudah
-            $tweet_string = preg_replace('/\s(udah*)\s/i', ' sudah ', $tweet_string);
-            //sdh -> sudah
-            $tweet_string = preg_replace('/\s(sdh*)\s/i', ' sudah ', $tweet_string);
-            //dgn -> dengan
-            $tweet_string = preg_replace('/\s(dgn*)\s/i', ' dengan ', $tweet_string);
-            //taik -> tahi
-            $tweet_string = preg_replace('/\s(taik*)\s/i', ' tahi ', $tweet_string);
-            //sumpa -> sumpah
-            $tweet_string = preg_replace('/\s(sumpa*)\s/i', ' sumpah ', $tweet_string);
-            //los -> hilang
-            $tweet_string = preg_replace('/\s(los*)\s/i', ' lost ', $tweet_string);
-            //jm -> jam
-            $tweet_string = preg_replace('/\s(jm*)\s/i', ' jam ', $tweet_string);
 
             // memecah kalimat menjadi kumpulan kata (token)
             $split = explode(' ', $tweet_string);
             // pengecekan slangword
-            foreach ($slang as $index => $slangword) 
-            { //diulang sebanyak jumlah list slangword
-                foreach ($split as $index_2 => $kata) 
-                { //diulang sebanyak jumlah kata(token) dalam 1 kalimat
+            foreach ($slang as $index => $slangword) { //diulang sebanyak jumlah list slangword
+                foreach ($split as $index_2 => $kata) { //diulang sebanyak jumlah kata(token) dalam 1 kalimat
                     if ($kata == $slangword) {
                         //mereplace kata slang menjadi ejaan yang baku
                         $split[$index_2] = $mean[$index];
@@ -201,14 +151,14 @@ class PreprocessingController extends Controller
 
         foreach ($result as $sts) {
             $a = DB::table('dataset_bersih')
-            ->where('id_tweet', $sts['id_tweet'])->insertOrIgnore([
-                'id_tweet' => $sts['id_tweet'],
-                'user' => $sts['user'],
-                'tweet' => $sts['tweet_stemming'],
-                'date' => $sts['date'],
-                'category' => $sts['category'],
-                'datatype' => $sts['datatype'],
-            ]);
+                ->where('id_tweet', $sts['id_tweet'])->insertOrIgnore([
+                    'id_tweet' => $sts['id_tweet'],
+                    'user' => $sts['user'],
+                    'tweet' => $sts['tweet_stemming'],
+                    'date' => $sts['date'],
+                    'category' => $sts['category'],
+                    'datatype' => $sts['datatype'],
+                ]);
         }
         return redirect()->back()->with('success', 'Data Saved');
     }

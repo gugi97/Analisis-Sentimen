@@ -17,6 +17,14 @@
                 </ol>
             </div>
         </div>
+        <form role="Insertform" action="{{ action('LabelingController@store') }}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <!-- Button Preprocessing -->
+            <button type="submit" class="btn btn-primary d-block mr- ml-auto">
+                <i class="fas fa-play-circle"></i> Auto Labeling
+            </button>
+            <!-- End Button Preprocessing -->
+        </form>
     </div><!-- /.container-fluid -->
 </section>
 
@@ -31,13 +39,6 @@
                 <li>{{$error}}</li>
                 @endforeach
             </ul>
-        </div>
-        @endif
-
-        @if(Session::has('success'))
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">×</button> 
-            <p style="margin-bottom: 0px;">{{ Session::get('success') }}</p>
         </div>
         @endif
         {{-- END ALERT MESSAGE --}}
@@ -80,7 +81,7 @@
                                     <td>{{ $train->datatype}}</td>
                                     <td>{{ $train->category }}</td>
                                     <td style="text-align:center; width: 100px;">
-                                    <form action="{{URL::to('/labelling/'.$train->id_tweet)}}" method="post">
+                                        <form action="{{URL::to('/labelling/'.$train->id_tweet)}}" method="post">
                                             {{ csrf_field() }}
                                             @method('PUT')
                                             <input type="hidden" name="id" value="{{$train->id_tweet}}">
@@ -88,9 +89,6 @@
                                                 <select @switch($train->manual_label)
                                                     @case("positif")
                                                     class="form-control bg-success text-white"
-                                                    @break
-                                                    @case("netral")
-                                                    class="form-control bg-info text-white"
                                                     @break
                                                     @case("negatif")
                                                     class="form-control bg-danger text-white"
@@ -106,10 +104,6 @@
                                                         selected
                                                         @endif
                                                         ><strong>Positif</strong></option>
-                                                    <option value="netral" @if ($train->manual_label == "netral")
-                                                        selected
-                                                        @endif
-                                                        ><strong>Netral</strong></option>
                                                     <option value="negatif" @if ($train->manual_label == "negatif")
                                                         selected
                                                         @endif
@@ -144,7 +138,7 @@
                                     <td>{{ $test->datatype}}</td>
                                     <td>{{ $test->category }}</td>
                                     <td style="text-align:center; width: 100px;">
-                                    <form action="{{URL::to('/labelling/'.$test->id_tweet)}}" method="post">
+                                        <form action="{{URL::to('/labelling/'.$test->id_tweet)}}" method="post">
                                             {{ csrf_field() }}
                                             @method('PUT')
                                             <input type="hidden" name="id" value="{{$test->id_tweet}}">
@@ -152,9 +146,6 @@
                                                 <select @switch($test->manual_label)
                                                     @case("positif")
                                                     class="form-control bg-success text-white"
-                                                    @break
-                                                    @case("netral")
-                                                    class="form-control bg-info text-white"
                                                     @break
                                                     @case("negatif")
                                                     class="form-control bg-danger text-white"
@@ -170,10 +161,6 @@
                                                         selected
                                                         @endif
                                                         ><strong>Positif</strong></option>
-                                                    <option value="netral" @if ($test->manual_label == "netral")
-                                                        selected
-                                                        @endif
-                                                        ><strong>Netral</strong></option>
                                                     <option value="negatif" @if ($test->manual_label == "negatif")
                                                         selected
                                                         @endif
@@ -188,7 +175,7 @@
                         </table>
                     </div>
                 </div>
-                
+
 
                 <!-- Footer -->
                 <!-- <div class="card-footer">
@@ -208,7 +195,7 @@
 <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" defer></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         var table1 = $('#datatable1').DataTable({
             "columnDefs": [{
@@ -232,21 +219,21 @@
             ]
         });
 
-        table1.on('order.dt search.dt', function () {
+        table1.on('order.dt search.dt', function() {
             table1.column(0, {
                 search: 'applied',
                 order: 'applied'
-            }).nodes().each(function (cell, i) {
+            }).nodes().each(function(cell, i) {
                 cell.innerHTML = i + 1;
                 table1.cell(cell).invalidate('dom');
             });
         }).draw();
 
-        table2.on('order.dt search.dt', function () {
+        table2.on('order.dt search.dt', function() {
             table2.column(0, {
                 search: 'applied',
                 order: 'applied'
-            }).nodes().each(function (cell, i) {
+            }).nodes().each(function(cell, i) {
                 cell.innerHTML = i + 1;
                 table2.cell(cell).invalidate('dom');
             });
@@ -254,6 +241,5 @@
 
         // var table = $('#datatable').DataTable();
     });
-
 </script>
 @endsection
