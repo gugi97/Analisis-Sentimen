@@ -17,7 +17,7 @@ class CreateDatasetKotor extends Migration
             $table->bigInteger('id_tweet')->primary();
             $table->string('user', 128);
             $table->mediumText('tweet');
-            $table->timestamp('date');
+            $table->dateTime('date');
             $table->string('category', 128);
             $table->string('datatype', 2);
             $table->string('manual_label', 20)->nullable();

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dataset;
+use App\Models\DatasetBersih;
+use App\Models\NegatifWord;
+use App\Models\PositifWord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -65,7 +68,8 @@ class LabelingController extends Controller
                 $result->manual_label = 'negatif';
                 $result->save();
             }else{
-                continue;
+                $result->manual_label = 'netral';
+                $result->save();
             }
             
         }
@@ -97,12 +101,12 @@ class LabelingController extends Controller
 
         if ($dataset->save()) {
             $message = [
-                'success' => 'Berhasil mengubah label tweet'
+                'success' => 'Successfully changed the tweet label'
             ];
             return redirect()->back()->with($message);
         } else {
             $message = [
-                'error' => 'Gagal mengubah label tweet'
+                'error' => 'Failed to change the tweet label'
             ];
             return redirect()->back()->with($message);
         }

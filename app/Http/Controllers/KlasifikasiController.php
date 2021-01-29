@@ -30,13 +30,14 @@ class KlasifikasiController extends Controller
             if ($data_training_bersih->count() > 0 && $data_testing_bersih->count() > 0) {
                 $this->klasifikasi();
                 $x = 'aman';
+                Alert::success('Successful Classification','The data has been saved, please refresh the page');
                 return view('klasifikasi', [
                     'data_bersih' => $data_testing_bersih,
                     'data_kotor' => $data_testing_kotor,
                     'x' => $x,
                 ]);
             } else {
-                // echo 'isi dataset kurang training/testing';
+                //'isi dataset kurang training/testing';
                 $x = 'dataset';
                 return view('klasifikasi', [
                     'data_bersih' => $data_testing_bersih,
@@ -45,6 +46,7 @@ class KlasifikasiController extends Controller
                 ]);
             }
         } else {
+            //'label manual masih belum lengkap';
             $x = 'label';
             return view('klasifikasi', [
                 'data_bersih' => $data_testing_bersih,

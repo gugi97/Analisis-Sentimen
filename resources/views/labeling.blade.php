@@ -90,6 +90,9 @@
                                                     @case("positif")
                                                     class="form-control bg-success text-white"
                                                     @break
+                                                    @case("netral")
+                                                    class="form-control bg-info text-white"
+                                                    @break
                                                     @case("negatif")
                                                     class="form-control bg-danger text-white"
                                                     @break
@@ -104,6 +107,10 @@
                                                         selected
                                                         @endif
                                                         ><strong>Positif</strong></option>
+                                                    <option value="netral" @if ($train->manual_label == "netral")
+                                                        selected
+                                                        @endif
+                                                        ><strong>Netral</strong></option>
                                                     <option value="negatif" @if ($train->manual_label == "negatif")
                                                         selected
                                                         @endif
@@ -147,6 +154,9 @@
                                                     @case("positif")
                                                     class="form-control bg-success text-white"
                                                     @break
+                                                    @case("netral")
+                                                    class="form-control bg-info text-white"
+                                                    @break
                                                     @case("negatif")
                                                     class="form-control bg-danger text-white"
                                                     @break
@@ -161,6 +171,10 @@
                                                         selected
                                                         @endif
                                                         ><strong>Positif</strong></option>
+                                                    <option value="netral" @if ($test->manual_label == "netral")
+                                                        selected
+                                                        @endif
+                                                        ><strong>Netral</strong></option>
                                                     <option value="negatif" @if ($test->manual_label == "negatif")
                                                         selected
                                                         @endif

@@ -15,22 +15,28 @@ class VisualisasiController extends Controller
     {
         $arraypos_indihome = array('category' => 'indihome', 'datatype' => '0', 'predict_label' => 'positif');
         $arrayneg_indihome = array('category' => 'indihome', 'datatype' => '0', 'predict_label' => 'negatif');
+        $arraynet_indihome = array('category' => 'indihome', 'datatype' => '0', 'predict_label' => 'netral');
         $indihome_positif = DatasetBersih::where($arraypos_indihome)->get();
         $indihome_negatif  = DatasetBersih::where($arrayneg_indihome)->get();
+        $indihome_netral  = DatasetBersih::where($arraynet_indihome)->get();
 
         $label_indihome = [
             'label_positif' => count($indihome_positif),
             'label_negatif' => count($indihome_negatif),
+            'label_netral' => count($indihome_netral),
         ];
 
         $arraypos_firstmedia = array('category' => 'firstmedia', 'datatype' => '0', 'predict_label' => 'positif');
         $arrayneg_firstmedia = array('category' => 'firstmedia', 'datatype' => '0', 'predict_label' => 'negatif');
+        $arraynet_firstmedia = array('category' => 'firstmedia', 'datatype' => '0', 'predict_label' => 'netral');
         $firstmedia_positif = DatasetBersih::where($arraypos_firstmedia)->get();
         $firstmedia_negatif = DatasetBersih::where($arrayneg_firstmedia)->get();
+        $firstmedia_netral = DatasetBersih::where($arraynet_firstmedia)->get();
 
         $label_firstmedia = [
             'label_positif' => count($firstmedia_positif),
             'label_negatif' => count($firstmedia_negatif),
+            'label_netral' => count($firstmedia_netral),
         ];
 
         $tweet_indihome = DatasetBersih::where(['category' => 'indihome', 'datatype' => '0'])->get();

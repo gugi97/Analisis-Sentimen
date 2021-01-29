@@ -73,6 +73,9 @@
                                     @case("positif")
                                     class="form-control bg-success text-white"
                                     @break
+                                    @case("netral")
+                                    class="form-control bg-info text-white"
+                                    @break
                                     @case("negatif")
                                     class="form-control bg-danger text-white"
                                     @break
@@ -86,6 +89,9 @@
                                 <div @switch($bersih->predict_label)
                                     @case("positif")
                                     class="form-control bg-success text-white"
+                                    @break
+                                    @case("netral")
+                                    class="form-control bg-info text-white"
                                     @break
                                     @case("negatif")
                                     class="form-control bg-danger text-white"

@@ -24,7 +24,7 @@
     <div class="container-fluid">
         <!-- INFO BOX -->
         <div class="row">
-            <div class="col-md-3 col-sm-6 col-12" style="padding: 0px 10px;">
+            <div class="col-md-2 col-sm-6 col-12" style="padding: 0px 10px;">
                 <div class="info-box">
                     <span class="info-box-icon" style="background-color: #ffffff;">
                         <img src="AdminLTE/dist/img/indihome.png" alt="Logo Indihome" class="brand-image">
@@ -32,16 +32,16 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text" style="color: #DC3545; font-weight: 700; font-size: 13px;">
-                            Indihome Data (Positive)
+                            Tweet (Positive)
                         </span>
                         <span class="info-box-number" style="font-size: 20px; font-family: cursive;">
-                            {{$label_indihome['label_positif']}} Tweet
+                            {{$label_indihome['label_positif']}}
                         </span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3 col-sm-6 col-12" style="padding: 0px 10px;">
+            <div class="col-md-2 col-sm-6 col-12" style="padding: 0px 10px;">
                 <div class="info-box">
                     <span class="info-box-icon" style="background-color: #ffffff;">
                         <img src="AdminLTE/dist/img/indihome.png" alt="Logo Indihome" class="brand-image">
@@ -49,16 +49,33 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text" style="color: #DC3545; font-weight: 700; font-size: 13px;">
-                            Indihome Data (Negative)
+                            Tweet (Netral)
                         </span>
                         <span class="info-box-number" style="font-size: 20px; font-family: cursive;">
-                            {{$label_indihome['label_negatif']}} Tweet
+                            {{$label_indihome['label_netral']}}
                         </span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3 col-sm-6 col-12" style="padding: 0px 10px;">
+            <div class="col-md-2 col-sm-6 col-12" style="padding: 0px 10px;">
+                <div class="info-box">
+                    <span class="info-box-icon" style="background-color: #ffffff;">
+                        <img src="AdminLTE/dist/img/indihome.png" alt="Logo Indihome" class="brand-image">
+                    </span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text" style="color: #DC3545; font-weight: 700; font-size: 13px;">
+                            Tweet (Negative)
+                        </span>
+                        <span class="info-box-number" style="font-size: 20px; font-family: cursive;">
+                            {{$label_indihome['label_negatif']}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- firstmedia -->
+            <div class="col-md-2 col-sm-6 col-12" style="padding: 0px 10px;">
                 <div class="info-box">
                     <span class="info-box-icon" style="background-color: #ffffff;">
                         <img src="AdminLTE/dist/img/firstmedia.png" alt="Logo Firstmedia" class="brand-image">
@@ -66,15 +83,15 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text" style="color: #3B60AD; font-weight: 700; font-size: 13px;">
-                            Firstmedia Data (Positive)
+                            Tweet (Positive)
                         </span>
                         <span class="info-box-number" style="font-size: 20px; font-family: cursive;">
-                            {{$label_firstmedia['label_positif']}} Tweet</span>
+                            {{$label_firstmedia['label_positif']}}</span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3 col-sm-6 col-12" style="padding: 0px 10px;">
+            <div class="col-md-2 col-sm-6 col-12" style="padding: 0px 10px;">
                 <div class="info-box">
                     <span class="info-box-icon" style="background-color: #ffffff;">
                         <img src="AdminLTE/dist/img/firstmedia.png" alt="Logo Firstmedia" class="brand-image">
@@ -82,10 +99,26 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text" style="color: #3B60AD; font-weight: 700; font-size: 13px;">
-                            Firstmedia Data (Negative)
+                            Tweet (Netral)
                         </span>
                         <span class="info-box-number" style="font-size: 20px; font-family: cursive;">
-                            {{$label_firstmedia['label_negatif']}} Tweet</span>
+                            {{$label_firstmedia['label_netral']}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-sm-6 col-12" style="padding: 0px 10px;">
+                <div class="info-box">
+                    <span class="info-box-icon" style="background-color: #ffffff;">
+                        <img src="AdminLTE/dist/img/firstmedia.png" alt="Logo Firstmedia" class="brand-image">
+                    </span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text" style="color: #3B60AD; font-weight: 700; font-size: 13px;">
+                            Tweet (Negative)
+                        </span>
+                        <span class="info-box-number" style="font-size: 20px; font-family: cursive;">
+                            {{$label_firstmedia['label_negatif']}}</span>
                     </div>
                 </div>
             </div>
@@ -175,17 +208,21 @@
             labels: [
                 'Indihome Positive',
                 'Indihome Negative',
+                'Indihome Netral',
                 'FirstMedia Positive',
                 'FirstMedia Negative',
+                'FirstMedia Netral',
             ],
             datasets: [{
                 data: [
                     indihome.label_positif,
                     indihome.label_negatif,
+                    indihome.label_netral,
                     firstmedia.label_positif,
                     firstmedia.label_negatif,
+                    firstmedia.label_netral,
                 ],
-                backgroundColor: ['#EC6B56', '#FFC154', '#0098D7', '#4B5EA6'],
+                backgroundColor: ['#FD6D48', '#F3D04E', '#ADC965', '#89D5C9','#0098D7', '#4B5EA6'],
             }]
         }
         var donutOptions = {
