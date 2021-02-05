@@ -67,9 +67,6 @@ class PreprocessingController extends Controller
             //memperbaiki ejaan, handling slangword
             $tweet_string = $sts_cleansing;
 
-            //amp -> " "
-            $tweet_string = preg_replace('/\s(amp*)\s/i', ' ', $tweet_string);
-
             // memecah kalimat menjadi kumpulan kata (token)
             $split = explode(' ', $tweet_string);
             // pengecekan slangword

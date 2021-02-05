@@ -82,44 +82,59 @@
                 <br>
                 <table class="table table-bordered table-hover">
                     <tbody>
+                        <blockquote style="border-left: .7rem solid #1E7E34;">
+                            <h6 style="color: #1E7E34;">Accuracy</h6>
+                            <p>Accuracy is defined as the level of closeness between the predicted value and the actual value (Number of documents classified correctly).</p>
+                        </blockquote>
+
                         <tr style="text-align: center;">
-                            <th scope="row" style="width: 200px;">Accuracy</th>
+                            <th scope="row" style="width: 180px;">Accuracy</th>
                             <td>(TA+TB+TC) / Total Data</td>
                             <td>= (({{$result['TA']}} + {{$result['TB']}} + {{$result['TC']}}) / {{$result['TOTAL']}}) * 100</td>
                             <td>= {{ $result['accuracy'] }}%</td>
                         </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <blockquote>
+                            <h6>Precision</h6>
+                            <p>Precision is the level of accuracy between the information requested by the user and the answers given by the system.</p>
+                        </blockquote>
+
                         <tr style="text-align: center;">
-                            <th scope="row">Precision</th>
+                            <th scope="row" style="width: 180px;">Precision</th>
                             <td>(Positive Precison + Negative Precison + Netral Precison) / Total Class</td>
                             <td>= (({{$result['precPositif']}} + {{$result['precNegatif']}} + {{$result['precNetral']}}) / 3) * 100</td>
                             <td>= {{ $result['precision'] }}%</td>
                         </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table class="table table-bordered table-hover">
+                    <blockquote style="border-left: .7rem solid #D19D00;">
+                        <h6 style="color: #D19D00;">Recall</h6>
+                        <p>Recall is the success rate of the system in recovering information.</p>
+                    </blockquote>
+
+                    <tbody>
                         <tr style="text-align: center;">
-                            <th scope="row">Recall</th>
+                            <th scope="row" style="width: 180px;">Recall</th>
                             <td>(Positive Recall + Negative Recall + Netral Recall) / Total Class</td>
                             <td>= (({{$result['recPositif']}} + {{$result['recNegatif']}} + {{$result['recNetral']}}) / 3) * 100</td>
                             <td>= {{ $result['recall'] }}%</td>
                         </tr>
                     </tbody>
                 </table>
+
             </div>
 
             <!-- <div class="card-footer">
             </div> -->
         </div>
-        <div class="callout callout-success">
-            <h6>Accuracy</h6>
-            <p>Accuracy is defined as the level of closeness between the predicted value and the actual value (Number of documents classified correctly).</p>
-        </div>
-        <div class="callout callout-info">
-            <h6>Precision</h6>
-            <p>Precision is the level of accuracy between the information requested by the user and the answers given by the system.</p>
-        </div>
-        <div class="callout callout-warning">
-            <h6>Recall</h6>
-            <p>Recall is the success rate of the system in recovering information.</p>
-        </div>
-        
     </div>
 </section>
 
